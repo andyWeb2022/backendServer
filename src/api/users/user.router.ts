@@ -16,8 +16,10 @@ app.get('/', db.getUsers)
 app.post('/users', db.signUp)
 // app.put('/users/:id', db.updateUser)
 // app.delete('/users/:id', db.deleteUser)
+app.post('/login', db.login)
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+
 module.exports = app
