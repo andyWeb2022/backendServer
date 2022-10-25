@@ -9,7 +9,7 @@ const pool = new Pool({
 
 export default class userModel {
     addOne(params:any) {
-        return pool.query('INSERT INTO person_list (name, email, password) VALUES ($1, $2, $3)', [params.name, params.email, params.password], (error:any, results:any) => {
+        return pool.query('INSERT INTO person_list (name, email, password) VALUES ($1, $2, $3)', [params.name, params.email, params.encryptedPassword], (error:any, results:any) => {
             if (error) {
               throw error
             }})

@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt')
 import userModel from "./user.model";
 const {addOne, findOne, getAll} = new userModel
 
@@ -12,10 +13,10 @@ const {addOne, findOne, getAll} = new userModel
     const list = await findOne({email})
     
     if (list.rows[0]) {
-      res.status(201).send(`The email had been used>>>`)
-    
+      res.status(201).send(`The email had been used`)
     } else {
-      await addOne({name, email, password})
+      const encryptedPassword =await bcrypt.hash(password, 10);
+      await addOne({name, email, encryptedPassword})
       res.status(201).send(`User ${email} signUp successful`)
     }
     
