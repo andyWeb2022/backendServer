@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
-import userModel from "./user.model";
-const {addOne, findOne, getAll} = new userModel
+import UserModel from "./user.model";
+const {addOne, findOne, getAll} = new UserModel()
 
   const getUsers = async(req:any, res:any) => {
     const usersList = await getAll();
@@ -21,7 +21,9 @@ const {addOne, findOne, getAll} = new userModel
     }
     
     } catch (error:any) {
-      console.log(error.msg)
+      throw {
+        msg:error.msg, status: 400
+      }
     }
   }
   module.exports = {

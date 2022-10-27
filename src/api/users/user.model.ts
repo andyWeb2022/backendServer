@@ -7,7 +7,7 @@ const pool = new Pool({
   port: 5432
 })
 
-export default class userModel {
+export default class UserModel {
     addOne(params:any) {
         return pool.query('INSERT INTO person_list (name, email, password) VALUES ($1, $2, $3)', [params.name, params.email, params.encryptedPassword], (error:any, results:any) => {
             if (error) {
