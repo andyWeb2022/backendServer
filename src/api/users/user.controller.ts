@@ -2,6 +2,7 @@ import UserModel from './user.model'
 const bcrypt = require('bcrypt')
 const { addOne, findOne, getAll } = new UserModel()
 
+
 const getUsers = async (req:any, res:any) => {
   const usersList = await getAll()
   res.send(usersList.rows)

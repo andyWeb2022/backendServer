@@ -11,9 +11,9 @@ app.use(
   })
 )
 
-app.get('/', db.getUsers)
+app.get('/getUsers', db.getUsers)
 // app.get('/users/:id', db.getUserById)
-app.post('/users', db.signUp)
+app.post('/signUp', db.signUp)
 // app.put('/users/:id', db.updateUser)
 // app.delete('/users/:id', db.deleteUser)
 app.post('/login', db.login)
