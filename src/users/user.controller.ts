@@ -1,18 +1,21 @@
 import UserModel from './user.model'
+import { Request, Response } from 'express';
 const bcrypt = require('bcrypt')
 const { addOne, findOne, getAll } = new UserModel()
+interface Iapi {
+  (req: Request, res: Response ): void;
+}
 
-
-const getUsers = async (req:any, res:any) => {
+const getUsers:Iapi = async (req, res) => {
   const usersList = await getAll()
   res.send(usersList.rows)
 }
 
-const login = async (req:any, res:any) => {
+const login:Iapi = async (req, res) => {
   try {
     const { email, password } = req.body
     if (!email || !password) {
-      res.status(201).send('請填入完整資料')
+      res.send('請填入完整資料')
     } else {
       const userData = await findOne({ email })
       if (userData.rows[0]) {
@@ -32,7 +35,7 @@ const login = async (req:any, res:any) => {
   }
 }
 
-const signUp = async (req:any, res:any) => {
+const signUp:Iapi = async (req, res) => {
   try {
     const { name, email, password } = req.body
     const list = await findOne({ email })
